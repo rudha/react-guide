@@ -1,28 +1,29 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import classes from './Cockpit.css';
+//import Aux from '../../hoc/Aux';
 
 const cockpit = (props) => {
-	let buttonClass = '';
+	const assignedClasses = [];
+	let buttonClass = classes.Button;
 	if (props.showPersons) {
-		buttonClass = classes.Red;
+		buttonClass = [classes.Button, classes.Red].join(' ');
 	}
 
-	const buttonClasses = [];
-    if (props.persons.length <= 2) {
-      buttonClasses.push(classes.red);
-    }
-    if (props.persons.length <= 1) {
-      buttonClasses.push(classes.bold);
-    }
+  if (props.persons.length <= 2) {
+    assignedClasses.push(classes.red);
+  }
+  if (props.persons.length <= 1) {
+    assignedClasses.push(classes.bold);
+  }
 
 	return (
-		<div className={classes.Cockpit} >
+		<Fragment>
 			<h1>I'm a React App!</h1>
-        	<p className={buttonClasses.join(' ')} >This works</p>
+        	<p className={assignedClasses.join(' ')} >This works</p>
         	<button
     			className={buttonClass}
     			onClick={props.click}>Toggle Persons</button>
-		</div>
+		</Fragment>
 	);
 };
 
